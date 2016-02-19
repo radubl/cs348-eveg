@@ -45,7 +45,7 @@
 								<ul class="popular-products">
 									 <li class="cart-container">
 										  <ul class="cart">
-										  	<li class="cart-item-container" ng-if="quantity > 0" ng-repeat="(cartItem,quantity) in cart">
+										  	<li class="cart-item-container" ng-if="quantity > 0" ng-repeat="(cartItem,quantity) in cart.items">
 										  		<img class="cart-image" style="background-image: url('{{getProductImage(cartItem)}}')" alt="" />
 										  		<div class="cart-item-details">
 										  			{{cartItem}} : {{quantity}}
@@ -53,6 +53,8 @@
 										  		<div class="clear"></div>
 										  	</li>
 										  </ul>
+										  			Total : &pound; {{(cart.total | number:2)*1}}
+										 
 									 </li>
 								</ul>
 							</div>

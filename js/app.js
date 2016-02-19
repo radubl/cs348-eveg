@@ -45,12 +45,19 @@ evegApp
 
         function modifyCart (item,quantity) {
           console.log('adding to cart ' + item + ' in quantity ' + quantity)
+
+          if ($scope.cart['items'][item] == undefined)
+              $scope.cart['items'][item] = 0;
+
           if (quantity == 0)
-            $scope.cart[item] = quantity; 
+            quantity = -$scope.cart['items'][item];
           else
-            $scope.cart[item] += quantity;
-            if ($scope.cart[item] < 0)
-              $scope.cart[item] = 0;
+            $scope.cart['items'][item] += quantity;
+
+          if ($scope.cart['items'][item] < 0)
+            $scope.cart['items'][item] = 0; 
+          else
+            $scope.cart['total'] += quantity * $scope.product['price']
 
         }
         }]
