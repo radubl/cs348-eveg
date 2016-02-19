@@ -1,0 +1,24 @@
+<div>
+	<div class="product-img">
+		<a href="preview.html">
+			<img class="product-image" style="background-image: url('{{product.image}}')" alt="" />
+		</a>
+	</div>
+	<div class="product-title">
+		<h4><a href="preview.html">{{product.name}}</a></h4>
+		<div class="item-description"> - {{product.description}} - </div>
+	</div>
+	<div class="price-details">
+		<div class="price-number">
+			 <p><span class="rupees">&pound; {{product.price}}</span><span class="product-quantity"> for {{product.units}}</span></p>
+		</div>
+		<div class="buy-details" style="-moz-user-select: none; -webkit-user-select: none; -ms-user-select:none; user-select:none;-o-user-select:none;" 
+			 unselectable="on"
+			 onselectstart="return false;" >
+			<div ng-click="subtractFromCart(product.name)" class="cart-button">-</div>
+			<input value="{{cart[product.name] || 0}}" class="in-cart">
+			<div ng-click="addToCart(product.name)" class="cart-button">+</div>
+		</div>
+	</div>
+	<div class="clear"></div>
+</div>

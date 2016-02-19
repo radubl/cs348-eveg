@@ -1,0 +1,63 @@
+	 <div class="main">
+		  <div class="content">
+				<div class="content_bottom">
+					 <div class="wrap">
+						  <div class="content-bottom-left">
+								<div class="categories">
+									 <ul>
+										  <h3>Filter Products</h3>
+										  <li><a href="#">Fruits</a></li>
+										  <li><a href="#">Vegetables</a></li>
+									 </ul>
+								</div>
+								<div class="buters-guide">
+									 <h3>Buyers Guide</h3>
+									 <p><span>We want you to be happy with your purchase.</span></p>
+									 <p>So we're committed to giving you all the tools to make the right decision with minimum fuss. </p>
+								</div>
+						  </div>
+
+						  <div class="content-bottom-right">
+							<h3>Browse Products
+												 <div class="header_top_right">
+						  <div class="search_box">
+								<span>Search</span>
+								<form>
+									 <input type="text" placeholder="Search product" value=""><input type="submit" value="">
+								</form>
+								<div class="clear"></div>
+						  </div>
+					 </div></h3>
+							<div ng-repeat="product in products" ng-if="$index % 3 == 0" class="section group">
+								 <div class="grid_1_of_4 images_1_of_4">
+									  <product-box cart='cart' product='products[$index]'></product-box>
+								 </div>
+								 <div ng-if="products.length > ($index + 1)" class="grid_1_of_4 images_1_of_4">
+									  <product-box cart='cart' product='products[$index+1]'></product-box>
+								 </div>
+								 <div ng-if="products.length > ($index + 2)" class="grid_1_of_4 images_1_of_4">
+									  <product-box cart='cart' product='products[$index+2]'></product-box>
+								 </div>
+							</div>
+						  </div>
+						  <div class="rightsidebar span_3_of_1 sidebar">
+								<h3>Your Cart</h3>
+								<ul class="popular-products">
+									 <li class="cart-container">
+										  <ul class="cart">
+										  	<li class="cart-item-container" ng-if="quantity > 0" ng-repeat="(cartItem,quantity) in cart">
+										  		<img class="cart-image" style="background-image: url('{{getProductImage(cartItem)}}')" alt="" />
+										  		<div class="cart-item-details">
+										  			{{cartItem}} : {{quantity}}
+										  		</div> 
+										  		<div class="clear"></div>
+										  	</li>
+										  </ul>
+									 </li>
+								</ul>
+							</div>
+						  <div class="clear"></div>
+					 </div>
+				</div>
+		  </div>
+	 </div>
