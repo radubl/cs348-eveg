@@ -20,22 +20,22 @@
 						  <div class="content-bottom-right">
 							<h3>Browse Products
 												 <div class="header_top_right">
-						  <div class="search_box">
+						  <div class="search_box" ng-controller="SearchCtrl">
 								<span>Search</span>
 								<form>
-									 <input type="text" placeholder="Search product" value=""><input type="submit" value="">
+									 <input type="text" placeholder="Search product" ng-model="search" value=""><input type="submit" value="">
 								</form>
 								<div class="clear"></div>
 						  </div>
 					 </div></h3>
 							<div ng-repeat="product in products" ng-if="$index % 3 == 0" class="section group">
-								 <div class="grid_1_of_4 images_1_of_4">
+								 <div class="grid_1_of_4 images_1_of_4 produce-box">
 									  <product-box cart='cart' product='products[$index]'></product-box>
 								 </div>
-								 <div ng-if="products.length > ($index + 1)" class="grid_1_of_4 images_1_of_4">
+								 <div ng-if="products.length > ($index + 1)" class="grid_1_of_4 images_1_of_4 produce-box">
 									  <product-box cart='cart' product='products[$index+1]'></product-box>
 								 </div>
-								 <div ng-if="products.length > ($index + 2)" class="grid_1_of_4 images_1_of_4">
+								 <div ng-if="products.length > ($index + 2)" class="grid_1_of_4 images_1_of_4 produce-box">
 									  <product-box cart='cart' product='products[$index+2]'></product-box>
 								 </div>
 							</div>
