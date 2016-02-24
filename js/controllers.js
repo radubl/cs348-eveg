@@ -12,15 +12,37 @@ evegControllers.controller('ShopController', ['$scope',
 		var products = getProductDetails();
 		$scope.products = Object.keys(products).map(function (key) {return products[key]});
 
-		// for (var i = 0; i < $scope.products.length; i++) {
-		// 	$scope.cart[$scope.products[i]['name']] = 0;
-		// }
-
-		// console.log($scope.products)
+		$scope.visibleProducts = $scope.products;
 
 		$scope.getProductImage = function(name) {
 			return products[name.toLowerCase()]['image'];
 		}
+
+		$scope.search = '';
+		$scope.$watch('search', function (value) {
+
+			var visibleProducts = []
+
+			if (value == "")
+				visibleProducts = $scope.products;
+			else
+				$.each($scope.products, function (index, item) {
+
+					var name = item['name'].toLowerCase();
+
+					var check = name.indexOf(value.toLowerCase());
+
+					if (check !== -1)
+					{
+						console.log(name)
+						visibleProducts.push(item);
+					}
+				});
+
+			// console.log(visibleProducts)
+
+			$scope.visibleProducts = visibleProducts;
+		});
 
 	}]);
 
@@ -30,31 +52,3 @@ evegControllers.controller('PhoneListCtrl', ['$scope',
 		$scope.orderProp = 'age';
 
 	}]);
-
-
-//sorry radu didn't how to do teh angular way
-//but hey it works ;)
-evegControllers.controller('SearchCtrl', ['$scope',
-	function ($scope) {
-		$scope.search = '';
-		$scope.$watch('search', function (value) {
-			$(".produce-box").each(function () {
-
-				//if no value for search
-				//show all boxes
-				if (value == "") {
-					$(this).show();
-				}
-
-				else {
-					var name = $(this).find(".product-title h4 a").html().toLowerCase();
-					var check = name.indexOf(value.toLowerCase());
-
-					if (check == -1) {
-						$(this).hide();
-					}
-				}
-			})
-		});
-	}]);
-
