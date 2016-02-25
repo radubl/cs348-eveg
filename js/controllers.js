@@ -7,7 +7,7 @@ var evegControllers = angular.module('evegControllers', []);
 evegControllers.controller('ShopController', ['$scope',
 	function($scope) {
 
-		$scope.cart = {'total' : 0, 'items' : {}};
+		/* products variables initialisation */
 
 		var products = getProductDetails();
 		$scope.products = Object.keys(products).map(function (key) {return products[key]});
@@ -17,6 +17,55 @@ evegControllers.controller('ShopController', ['$scope',
 		$scope.getProductImage = function(name) {
 			return products[name.toLowerCase()]['image'];
 		}
+
+		$scope.getProductPriceByQuantity = function(name,quantity) {
+			return products[name.toLowerCase()]['price'] * quantity;
+		}
+
+		/* CART initialisation */
+
+		$scope.cart = {'total' : 0, 'items' : {}};
+
+        $scope.addToCart = function (item) {
+          modifyCart(item,1);
+        };
+
+        $scope.subtractFromCart = function (item) {
+          modifyCart(item,-1);
+        };
+
+        $scope.deleteFromCart = function (item) {
+          modifyCart(item,0);
+        };
+
+        function modifyCart (item,quantity) {
+          console.log('adding to cart ' + item + ' in quantity ' + quantity)
+
+          if ($scope.cart['items'][item] == undefined)
+              $scope.cart['items'][item] = 0;
+
+          if (quantity == 0)
+            quantity = -$scope.cart['items'][item];
+          
+          $scope.cart['items'][item] += quantity;
+
+          if ($scope.cart['items'][item] < 0)
+            $scope.cart['items'][item] = 0; 
+          else
+            $scope.cart['total'] += quantity * products[item.toLowerCase()]['price']
+
+        }
+
+        $scope.getTotalItemsNumber = function (argument) {
+        	var count = 0;
+        	$.each($scope.cart['items'], function(item,quantity) {
+        		console.log(quantity)
+        		count += quantity;
+        	});
+        	return count;
+        }
+
+        /* SEARCH bar initialisation */
 
 		$scope.search = '';
 		$scope.$watch('search', function (value) {
@@ -39,16 +88,7 @@ evegControllers.controller('ShopController', ['$scope',
 					}
 				});
 
-			// console.log(visibleProducts)
-
 			$scope.visibleProducts = visibleProducts;
 		});
-
-	}]);
-
-evegControllers.controller('PhoneListCtrl', ['$scope',
-	function($scope) {
-
-		$scope.orderProp = 'age';
 
 	}]);

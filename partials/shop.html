@@ -42,18 +42,36 @@
 						  </div>
 						  <div class="rightsidebar span_3_of_1 sidebar">
 								<h3>Your Cart</h3>
-								<ul class="popular-products">
+								<ul class="popular-products shoppin-cart">
 									 <li class="cart-container">
 										  <ul class="cart">
 										  	<li class="cart-item-container" ng-if="quantity > 0" ng-repeat="(cartItem,quantity) in cart.items">
 										  		<img class="cart-image" style="background-image: url('{{getProductImage(cartItem)}}')" alt="" />
 										  		<div class="cart-item-details">
-										  			{{cartItem}} : {{quantity}}
+										  			{{cartItem}}
+										  			<span ng-click="deleteFromCart(cartItem)" class="remove-item">x</span>
 										  		</div> 
-										  		<div class="clear"></div>
+										  		<div class="small-cart-operators" style="-moz-user-select: none; -webkit-user-select: none; -ms-user-select:none; user-select:none;-o-user-select:none;" >
+								  					<div ng-click="subtractFromCart(cartItem)" class="cart-button">-</div>
+													<input value="{{quantity}}" class="in-cart">
+													<div ng-click="addToCart(cartItem)" class="cart-button">+</div>
+											  		<div class="item-amount">
+											  			&pound; {{(getProductPriceByQuantity(cartItem,quantity) | number:2)*1}}
+											  		</div>
+											  		<div class="clear"></div>
+										  		</div>
 										  	</li>
 										  </ul>
-										  			Total : &pound; {{(cart.total | number:2)*1}}
+										  <div ng-hide="cart.total == 0"  class="total-items-container">
+										  	<div class="total-items">{{getTotalItemsNumber()}} Items</div>
+										  </div>
+										  <div ng-hide="cart.total == 0" class="total-container">
+										  		<span class="checkout-button">Checkout</span>
+										  			<span class="total"><span class="total-label" >Total : </span>&pound; {{(cart.total | number:2)*1}}</span>
+										  </div>
+										  <div ng-show="cart.total == 0">
+										  		<div>Add items to cart</div>
+										  </div>
 										 
 									 </li>
 								</ul>

@@ -60,6 +60,7 @@ evegApp
             $scope.cart['total'] += quantity * $scope.product['price']
 
         }
+        
         }]
     };
 });

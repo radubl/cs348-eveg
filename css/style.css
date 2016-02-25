@@ -1600,6 +1600,21 @@ span.product-quantity {
     display: inline-block;
 }
 
+.small-cart-operators > .cart-button {
+	width:20px;
+	height:20px;
+	line-height:16px;
+	font-size:20px;
+}
+
+
+.small-cart-operators > input.in-cart {
+	width:20px;
+	height: 20px;
+	line-height:16px;
+	font-size:14px;
+}
+
 input.in-cart {
     width: 34px;
     display: inline-block;
@@ -1619,19 +1634,82 @@ input.in-cart {
 }
 
 img.cart-image {
-    width: 130px;
+    width: 50px;
     height: 40px;
     float: left;
+    /* padding: 5px; */
+    border: 8px solid #F5F5F5;
+    outline: 1px solid #CECCCC;
+    background-position: center;
+    background-size: 140px 100px;
 }
 li.cart-item-container {
     padding-bottom: 11px;
     margin-bottom: 0px !important;
-    border-bottom: 1px solid gainsboro;
+    /* border-bottom: 1px solid gainsboro; */
     margin-top: 3px;
 }
 li.cart-item-container:last-child{
 	border:none;
 }
-.cart-item-details{margin: 11px 0px;}
+.cart-item-details{
+    border-bottom: 1px solid #CECCCC;
+    padding-bottom: 11px;
+}
 
-.cart-button.disabled {cursor: not-allowed;}
+.cart-button.disabled {cursor: not-allowed;background: white;color: #E2522F;outline: 1px solid #E2522F;}
+.small-cart-operators {
+    margin-top: 3px;
+}
+.item-amount.ng-binding {
+	float: right;
+	padding: 0px 10px 1px 9px;
+	width: 50px;
+	font-weight: bold;
+	border-left: 1px solid #CECCCC;
+}
+.total-container{
+	font-size: 21px;
+	/* margin-top: 20px; */
+	border-top: 1px solid gainsboro;
+	padding-top: 13px;
+	height: 23px;
+}
+span.checkout-button {
+    float: left;
+    background: #2F87E2;
+    color: white;
+    /* font-weight: bold; */
+    cursor: pointer;
+    padding: 2px 10px;
+    margin-top: -3px;
+}
+
+span.total.ng-binding {
+    float: right;
+}
+span.total-label {
+    opacity: 0.3;
+}
+span.remove-item {
+    float: right;
+    cursor: pointer;
+    background: white;
+    width: 15px;
+    height: 15px;
+    line-height: 12px;
+    margin-top: 2px;
+    position: relative;
+    right: 0;
+    color: #B70202;
+    border: 1px solid #B70202;
+    border-radius: 3px;
+    /* text-transform: capitalize; */
+    font-size: 14px;
+    font-weight: bold;
+}
+.total-items-container {
+    margin: 15px 0px 5px 0px;
+}
+
+.total-items.ng-binding {text-align: right;font-size: 18px;padding-left: 5px;}
