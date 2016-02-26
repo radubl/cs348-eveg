@@ -10,7 +10,7 @@ article, aside, details, figcaption, figure,footer, header, hgroup, menu, nav, s
 ol,ul{list-style:none;margin:0;padding:0;}
 blockquote,q{quotes:none;}
 blockquote:before,blockquote:after,q:before,q:after{content:'';content:none;}
-table{border-collapse:collapse;border-spacing:0;}
+table{border-collapse:collapse;border-spacing:0;/* border: 1px solid black; */}
 /* start editing from here */
 a{text-decoration:none;}
 .txt-rt{text-align:right;}/* text align right */
@@ -1628,7 +1628,7 @@ input.in-cart {
     top: -1px;
 }
 .subtitle {
-    color: #E6E6E6;
+    color: #FFF8C8;
     margin: 8px 0px -10px 65px;
     font-style: italic;
 }
@@ -1642,6 +1642,8 @@ img.cart-image {
     outline: 1px solid #CECCCC;
     background-position: center;
     background-size: 140px 100px;
+    z-index: 2;
+    position: relative;
 }
 li.cart-item-container {
     padding-bottom: 11px;
@@ -1653,8 +1655,14 @@ li.cart-item-container:last-child{
 	border:none;
 }
 .cart-item-details{
-    border-bottom: 1px solid #CECCCC;
-    padding-bottom: 11px;
+    border: 1px solid #CECCCC;
+    padding: 9px;
+    padding-top: 4px;
+    background: whitesmoke;
+    position: relative;
+    top: -1px;
+    z-index: 1;
+    color: #000000;
 }
 
 .cart-button.disabled {cursor: not-allowed;background: white;color: #E2522F;outline: 1px solid #E2522F;}
@@ -1675,7 +1683,7 @@ li.cart-item-container:last-child{
 	padding-top: 13px;
 	height: 23px;
 }
-span.checkout-button {
+.checkout-button {
     float: left;
     background: #2F87E2;
     color: white;
@@ -1683,6 +1691,12 @@ span.checkout-button {
     cursor: pointer;
     padding: 2px 10px;
     margin-top: -3px;
+}
+span.checkout-button:hover {
+    background: #1671D0;
+}
+span.checkout-button:active {
+    background: #141FA2;
 }
 
 span.total.ng-binding {
@@ -1712,4 +1726,133 @@ span.remove-item {
     margin: 15px 0px 5px 0px;
 }
 
-.total-items.ng-binding {text-align: right;font-size: 18px;padding-left: 5px;}
+.total-items.ng-binding {font-size: 18px;padding-left: 5px;}
+
+/* CHECKOUT  */
+.form-container, .invoice-container {
+	min-height: 900px;
+	display: inline-table;
+	width: 42.9%;
+	position: relative;
+}
+.form-container {
+    margin: 2% 1% 2% 5.5%;
+}
+.invoice-container {
+    margin: 2% 5.5% 2% 1%;
+}
+.invoice {
+    background:white;
+    min-height: inherit;
+    padding: 25px;
+}
+@media screen and (max-width: 900px) {
+.form-container, .invoice-container {
+    width: 94%;
+    margin: 3%;
+}
+	}
+#creditCard > input, #creditCard > select{
+    padding: 15px;
+    padding-right: 0px;
+    width: 97%;
+    margin: 0.8% 0.5%;
+    display:inline-block;
+    border-radius: 3px;
+    border: 1px solid #A0C4DE;
+    outline: 0;
+    font-size: 15px;
+    margin-left: 0;
+    background-color: white;
+}
+#creditCard > input:focus, #creditCard > select:focus{
+    border: 1px solid #2db573;
+}
+#creditCard > select {
+    width: 18%;
+    text-align: center;
+    height: 49px;
+}
+
+input[name="name"] {
+    width: 73% !important;
+    float: right;
+}
+input[name="number"] {
+    width: 61% !important;
+}
+input[name="expiry"], input[name="cvc"] {
+    width: 12% !important;
+    float:right
+}
+
+.invoice-container > #checkoutHeader {
+	background: #2db573;
+}
+#checkoutHeader{
+	font-size:1.1em;
+	color:#FFF;
+	padding:10px;
+	background: #2DB573;
+	position:relative;
+	margin-bottom:5px;
+}
+#checkoutHeader{
+	margin-bottom: 20px !important;
+	/* padding-left: 10px; */
+	width: 50%;
+	/* display: inline-block; */
+}
+#checkoutHeader:before{
+	content:'';
+	position:absolute;
+	top:0;
+	right:0;
+	border-width: 20px 16px 20px 0px;
+	border-style: solid;
+	border-color: rgba(239, 0, 0, 0) #EBEBEB rgba(0, 128, 0, 0) #EBEBEB;
+}
+
+.card-wrapper {
+    margin: 30px 0px 60px 0px;
+}
+th {
+    border: 1px solid #848484;
+    padding: 8px 10px;
+    width: 300px;
+    background: gainsboro;
+}
+.title {
+    text-align: center;
+    font-size: 30px;
+    /* padding: 20px; */
+    text-transform: capitalize;
+}
+
+.recipient.ng-binding {
+    padding: 25px 0px;
+}
+
+td {
+    border: 1px solid #848484;
+    text-align: center;
+    padding: 10px;
+}
+.invoice > img {
+    width: 450px;
+    /* float: right; */
+}
+
+.invoice > p {
+    font-size: 14px;
+    margin-left: 70px;
+    margin-top: -10px;
+    margin-bottom: 90px;
+}
+
+.invoice > .total {
+	padding: 20px;
+    text-align: right;
+    font-size: 20px;
+}
+#creditCard > .checkout-button {position: absolute;right: 0;padding: 10px;top: 4px;}

@@ -23,7 +23,7 @@
 						  <div class="search_box">
 								<span>Search</span>
 								<form>
-									 <input type="text" placeholder="Search product" ng-model="search" value=""><input type="submit" value="">
+									 <input type="text" id="searchVeg" placeholder="Search product" ng-model="search" value=""><input type="submit" value="">
 								</form>
 								<div class="clear"></div>
 						  </div>
@@ -66,8 +66,8 @@
 										  	<div class="total-items">{{getTotalItemsNumber()}} Items</div>
 										  </div>
 										  <div ng-hide="cart.total == 0" class="total-container">
-										  		<span class="checkout-button">Checkout</span>
-										  			<span class="total"><span class="total-label" >Total : </span>&pound; {{(cart.total | number:2)*1}}</span>
+										  		<a href="#/checkout" class="checkout-button">Checkout</a>
+									  			<span class="total"><span class="total-label" >Total : </span>&pound; {{(cart.total | number:2)*1}}</span>
 										  </div>
 										  <div ng-show="cart.total == 0">
 										  		<div>Add items to cart</div>

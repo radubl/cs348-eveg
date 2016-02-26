@@ -1,0 +1,71 @@
+	 <div class="main">
+		  <div class="content">
+				<div class="form-container">
+					<form id="creditCard" action="">
+						<h3 id="checkoutHeader">Card Details</h3>
+						<a href="#/shop" class="checkout-button">Continue Shopping</a>
+						<select ng-model="title" name="title">
+							<option> Mr. </option>
+							<option> Mrs. </option>
+							<option> Ms. </option>
+							<option> Dr. </option>
+							<option> Prof. </option>
+							<option> Rev. </option>
+						</select>
+						<input ng-model="name" placeholder="Full name" type="text" name="name">
+						<input ng-model="number" placeholder="Card number" type="text" name="number">
+						<input ng-model="cvc" placeholder="CVC" type="text" name="cvc">
+						<input ng-model="expiry" placeholder="MM / YY" type="text" name="expiry">
+						<div class="card-wrapper"></div>
+						<h3 id="checkoutHeader">Address</h3>
+						<input ng-model="postcode" placeholder="Postcode" type="text" name="postcode">
+						<input ng-model="houseNr" placeholder="House Number" type="text" name="houseNr">
+						<input ng-model="address" placeholder="Address" type="text" name="address">
+					</form>
+
+					<script>
+						new Card({
+							form: document.querySelector('#creditCard'),
+							container: '.card-wrapper'
+						});
+					</script>
+				</div>
+				<div class="invoice-container">
+					<h3 id="checkoutHeader">Invoice</h3>
+					<div class="invoice">
+						<img src="images/logo-black.png" alt="" />
+						<p >- A Warwick University Money Laundering Private Service</p>
+						<div class="clear"></div>
+						<div class="title">INVOICE</div>
+						<div class="recipient">
+							Recipient : {{title}} {{name}}
+							<br>
+							{{address}}
+						</div>
+						<div class="items"></div>
+						<table>
+							<thead>
+								<tr>
+									<th>#</th>
+									<th>Item</th>
+									<th>Description</th>
+									<th>Quantity</th>
+									<th>Cost</th>
+								</tr>
+							</thead>
+							<tbody>
+								<tr ng-repeat="(item,quantity) in cart.items">
+									<td>{{$index + 1}}</td>
+									<td>{{item}}</td>
+									<td>{{getProductDescription(item)}}</td>
+									<td>{{quantity}}</td>
+									<td>&pound; {{(getProductPriceByQuantity(item,quantity) | number:2)*1}}</td>
+								</tr>
+							</tbody>
+						</table>
+						<div class="total">Total: &pound; {{(cart.total | number:2)*1}}</div>
+					</div>
+					
+				</div>
+		  </div>
+	 </div>

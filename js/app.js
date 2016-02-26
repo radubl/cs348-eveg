@@ -60,7 +60,7 @@ evegApp
             $scope.cart['total'] += quantity * $scope.product['price']
 
         }
-        
+
         }]
     };
 });
@@ -69,11 +69,11 @@ evegApp.config(['$routeProvider','$locationProvider',
     $routeProvider.
       when('/shop', {
         templateUrl: 'partials/shop.html',
-        controller: 'ShopController'
+        controller: 'SearchController'
       }).
-      when('/phones/:phoneId', {
-        templateUrl: 'partials/phone-detail.html',
-        controller: 'PhoneDetailCtrl'
+      when('/checkout', {
+        templateUrl: 'partials/checkout.html',
+        controller: 'CheckoutController as vm'
       }).
       otherwise({
         redirectTo: '/shop'

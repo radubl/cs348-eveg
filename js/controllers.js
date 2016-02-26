@@ -22,6 +22,10 @@ evegControllers.controller('ShopController', ['$scope',
 			return products[name.toLowerCase()]['price'] * quantity;
 		}
 
+		$scope.getProductDescription= function(name) {
+			return products[name.toLowerCase()]['description'];
+		}
+
 		/* CART initialisation */
 
 		$scope.cart = {'total' : 0, 'items' : {}};
@@ -59,11 +63,15 @@ evegControllers.controller('ShopController', ['$scope',
         $scope.getTotalItemsNumber = function (argument) {
         	var count = 0;
         	$.each($scope.cart['items'], function(item,quantity) {
-        		console.log(quantity)
         		count += quantity;
         	});
         	return count;
         }
+
+	}]);
+
+evegControllers.controller('SearchController', ['$scope',
+	function($scope) {
 
         /* SEARCH bar initialisation */
 
@@ -83,12 +91,38 @@ evegControllers.controller('ShopController', ['$scope',
 
 					if (check !== -1)
 					{
-						console.log(name)
 						visibleProducts.push(item);
 					}
 				});
 
 			$scope.visibleProducts = visibleProducts;
+		});
+
+	}]);
+
+evegControllers.controller('CheckoutController', ['$scope', '$http',
+	function($scope,$http) {
+		$(document).on('keyup', 'input[name="houseNr"]' ,function () {
+
+			var postcode = ($('input[name="postcode"]').val()).replace(/ /g,'');
+			var nr = $(this).val();
+			if (isNaN(parseInt(nr)))
+				return;
+			var getAddrUrl = 'https://api.getaddress.io/v2/uk/'+postcode+'/'+nr.replace(/ /g,'')+'?api-key=wPNA_PweF0i3MZgHVORq1Q3395';
+
+			if(postcode.length == 6)
+				$http({
+					method: 'GET',
+					url: getAddrUrl
+					}).then(function successCallback(response) {
+						console.log(response)
+						$('input[name="address"]').val(response.data["Addresses"][0].replace(/[, ,]+/g,' ').trim());
+						$('input[name="address"]').trigger('input');
+
+					}, function errorCallback(response) {
+					alert('invalid address')
+					console.log(response)
+					});
 		});
 
 	}]);
