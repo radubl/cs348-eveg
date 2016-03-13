@@ -4,16 +4,21 @@
 					 <div class="wrap">
 						  <div class="content-bottom-left">
 								<div class="categories">
-									 <ul>
+									 <ul class="checkmark">
 										  <h3>Filter Products</h3>
-										  <li><a href="#">Fruits</a></li>
-										  <li><a href="#">Vegetables</a></li>
+										  <li ng-class="(filters.indexOf('fruit') != -1) ? 'checked' : 'unchecked'"><a ng-href="#shop" ng-click="filterProducts('fruit')">Fruits</a></li>
+										  <li ng-class="(filters.indexOf('vegetable') != -1) ? 'checked' : 'unchecked'" ><a ng-href="#shop"  ng-click="filterProducts('vegetable')">Vegetables</a></li>
 									 </ul>
 								</div>
 								<div class="buters-guide">
 									 <h3>Buyers Guide</h3>
-									 <p><span>We want you to be happy with your purchase.</span></p>
-									 <p>So we're committed to giving you all the tools to make the right decision with minimum fuss. </p>
+									 <p><span>To make the most out of your shopping experience:</span></p>
+									 <ul class="guide">
+										 <li>Use the filter above to quickly browse through categories.</li>
+										 <li>To find a specific product, type its name into the search bar.</li>
+										 <li>You can also refine the chosen quantities inside the cart view.</li>
+										 <li>Don't worry if you miss anything. You can always come back and refine your chosen items.</li>
+									 </ul>
 								</div>
 						  </div>
 

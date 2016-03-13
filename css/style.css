@@ -450,10 +450,10 @@ body {
 .categories li a{
 	display:block;
 	font-size:15px;
-	padding:10px 15px;
-    color: #9C9C9C;
-    background:url(../images/drop_arrow.png) no-repeat 0;
-    border-bottom:1px solid #D6D6D6;
+	padding: 10px 19px;
+	color: #9C9C9C;
+	/* background:url(../images/drop_arrow.png) no-repeat 0; */
+	border-bottom:1px solid #D6D6D6;
 }
 .categories li:last-child a{
 	border:none;
@@ -1610,13 +1610,18 @@ span.product-quantity {
 
 .small-cart-operators > input.in-cart {
 	width:20px;
-	height: 20px;
+	height: 16px;
 	line-height:16px;
 	font-size:14px;
+	position: relative;
+	top: -1px;
+	cursor: default;
+	border: 0;
 }
 
 input.in-cart {
     width: 34px;
+    height: 21px;
     display: inline-block;
     text-align: center;
     border: none;
@@ -1625,7 +1630,8 @@ input.in-cart {
     line-height: 11px;
     font-size: 18px;
     position: relative;
-    top: -1px;
+    top: -2px;
+    border: 1px solid #CECBCB;
 }
 .subtitle {
     color: #FFF8C8;
@@ -1665,7 +1671,7 @@ li.cart-item-container:last-child{
     color: #000000;
 }
 
-.cart-button.disabled {cursor: not-allowed;background: white;color: #E2522F;outline: 1px solid #E2522F;}
+.cart-button.disabled {cursor: not-allowed;background: white;color: #E2522F;outline: 1px solid #E2522F;height: 23px;position: relative;top: 1px;width: 23px;}
 .small-cart-operators {
     margin-top: 3px;
 }
@@ -1856,3 +1862,62 @@ td {
     font-size: 20px;
 }
 #creditCard > .checkout-button {position: absolute;right: 0;padding: 10px;top: 4px;}
+
+.ui-tooltip {
+    background: #666;
+    color: white;
+    border: none;
+    padding: 0;
+    opacity: 1;
+    width:160px;
+}
+.ui-tooltip-content {
+    position: relative;
+    padding: 0.5em;
+    text-align:center;
+    font-size:11px;
+}
+.ui-tooltip-content::after {
+    content: '';
+    position: absolute;
+    border-style: solid;
+    display: block;
+    width: 0;
+}
+.top .ui-tooltip-content::after {
+    bottom: -10px;
+    left: 70px;
+    border-color: #666 transparent;
+    border-width: 10px 10px 0;    
+}
+
+ul.checkmark li.checked:before {
+    content:"\2713\0020";
+    float: left;
+    position: relative;
+    top: 7px;
+    color: #2DB573;
+}
+.actions > .checkout-button{
+	padding:10px;
+	margin-right:10px;
+}
+
+@media print
+{
+.no-print{ display: none; }
+#inv{ display: block; }
+.invoice-container{
+	width: 100%;
+}
+}
+
+.guide > li {
+    margin: 15px 0px;
+    color: gray;
+    font-size: 15px;
+}
+.guide{
+    list-style:initial;
+    margin-left:20px;
+}

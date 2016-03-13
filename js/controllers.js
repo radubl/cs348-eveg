@@ -7,6 +7,10 @@ var evegControllers = angular.module('evegControllers', []);
 evegControllers.controller('ShopController', ['$scope',
 	function($scope) {
 		$(document).tooltip();
+		$(document).tooltip('option', 'position', {'collusion' :'none',  my: 'center bottom', at: 'center top-10' });
+		$(document).tooltip('option', 'tooltipClass', 'top');
+
+		$scope.filters = ['fruit','vegetable'];
 
 		/* products variables initialisation */
 
@@ -69,6 +73,21 @@ evegControllers.controller('ShopController', ['$scope',
         	return count;
         }
 
+        $(document).on('keyup', 'input.in-cart' ,function () {
+        	var val = parseInt($(this).val().split(" ").pop());
+
+        	console.log($(this).attr("item"));
+
+        	if (!isNaN(val)) 
+        	{
+        		if ($scope.cart['items'][$(this).attr("item")] != undefined)
+        			$scope.cart['total'] -= $scope.getProductPriceByQuantity($(this).attr("item"),$scope.cart['items'][$(this).attr("item")]);
+        	   	$scope.cart['items'][$(this).attr("item")] = val;
+        	   	$scope.cart['total'] += $scope.getProductPriceByQuantity($(this).attr("item"),val);
+        	}
+        	$scope.$apply();
+        });
+
 	}]);
 
 evegControllers.controller('SearchController', ['$scope',
@@ -78,6 +97,8 @@ evegControllers.controller('SearchController', ['$scope',
 
 		$scope.search = '';
 		$scope.$watch('search', function (value) {
+
+			$scope.filters = ['fruit','vegetable'];
 
 			var visibleProducts = []
 
@@ -98,6 +119,27 @@ evegControllers.controller('SearchController', ['$scope',
 
 			$scope.visibleProducts = visibleProducts;
 		});
+
+		$scope.filterProducts = function (type) {
+
+        	var index = $scope.filters.indexOf(type)
+        	if (index != -1)
+        		$scope.filters.splice(index,1);
+        	else
+        		$scope.filters.push(type)
+
+        	console.log($scope.filters)
+
+        	var products = []
+
+        	$.each( $scope.products, function (index, item) {
+        		if ($scope.filters.indexOf(item.filter) != -1)
+        			products.push(item)
+        	});
+
+        	$scope.visibleProducts = products;
+
+        }
 
 	}]);
 
@@ -125,5 +167,43 @@ evegControllers.controller('CheckoutController', ['$scope', '$http',
 					console.log(response)
 					});
 		});
+
+		var form = $('.invoice'),  cache_width = form.width()
+		var a4  =[ 595.28,  841.89];  // for a4 size paper width and height
+		 
+		$('#downloadInvoice').on('click',function(){
+			$('body').scrollTop(0);
+			createPDF();
+		});
+
+		//create pdf
+		function createPDF(){
+		 getCanvas().then(function(canvas){
+		  var img = canvas.toDataURL("image/png");
+
+		  console.log(img)
+		  var doc = new jsPDF({
+		          unit:'px', 
+		          format:'a4'
+		        });     
+		        doc.addImage(img, 'JPEG', 20, 20);
+		        doc.save('invoice.pdf');
+		        form.width(cache_width);
+		 });
+		}
+		 
+		// create canvas object
+		function getCanvas(){
+		 form.width((a4[0]*1.33333) -80).css('max-width','none');
+		 return html2canvas(form,{
+		     imageTimeout:2000,
+		     removeContainer:true
+		    }); 
+		}
+
+		$('#printInvoice').on('click',function(){
+			window.print();
+		});
+
 
 	}]);

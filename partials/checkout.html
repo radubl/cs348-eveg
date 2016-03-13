@@ -1,6 +1,6 @@
 	 <div class="main">
 		  <div class="content">
-				<div class="form-container">
+				<div class="no-print form-container">
 					<form id="creditCard" action="">
 						<h3 id="checkoutHeader">Card Details</h3>
 						<a href="#/shop" class="checkout-button">Continue Shopping</a>
@@ -29,17 +29,26 @@
 							container: '.card-wrapper'
 						});
 					</script>
+					<br>
+					<h3 id="checkoutHeader">Actions</h3>
+					<div class="actions">	
+						<div class="checkout-button" id="printInvoice">Print Invoice</div>
+						<div class="checkout-button" id="downloadInvoice">Save Invoice as PDF</div>
+					</div>
 				</div>
 				<div class="invoice-container">
-					<h3 id="checkoutHeader">Invoice</h3>
-					<div class="invoice">
+					<h3 class="no-print" id="checkoutHeader">Invoice</h3>
+					<div id="inv" class="invoice">
 						<img src="images/logo-black.png" alt="" />
-						<p >- A Warwick University Money Laundering Private Service</p>
+						<p >- Fresh produce from the Midland's green countryside.</p>
 						<div class="clear"></div>
 						<div class="title">INVOICE</div>
 						<div class="recipient">
-							Recipient : {{title}} {{name}}
-							<br>
+							Recipient : {{title}} {{name}}, card number ending in {{number | card}}
+						</div>
+						<br>
+						<div class="billing">
+							Billing Information:
 							{{address}}
 						</div>
 						<div class="items"></div>
@@ -63,7 +72,7 @@
 								</tr>
 							</tbody>
 						</table>
-						<div class="total">Total: &pound; {{(cart.total | number:2)*1}}</div>
+						<div class="total">Total: &pound; {{(cart.total | number:2)*1}} <span style="color:gray;">( VAT :&pound; {{((cart.total | number:2)*0.2) * 1 }} )</span> </div>
 					</div>
 					
 				</div>
