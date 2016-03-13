@@ -6,6 +6,7 @@ var evegControllers = angular.module('evegControllers', []);
 
 evegControllers.controller('ShopController', ['$scope',
 	function($scope) {
+		$(document).tooltip();
 
 		/* products variables initialisation */
 
