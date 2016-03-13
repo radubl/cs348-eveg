@@ -1610,13 +1610,18 @@ span.product-quantity {
 
 .small-cart-operators > input.in-cart {
 	width:20px;
-	height: 20px;
+	height: 16px;
 	line-height:16px;
 	font-size:14px;
+	position: relative;
+	top: -1px;
+	cursor: default;
+	border: 0;
 }
 
 input.in-cart {
     width: 34px;
+    height: 21px;
     display: inline-block;
     text-align: center;
     border: none;
@@ -1625,7 +1630,8 @@ input.in-cart {
     line-height: 11px;
     font-size: 18px;
     position: relative;
-    top: -1px;
+    top: -3px;
+    border: 1px solid #CECBCB;
 }
 .subtitle {
     color: #FFF8C8;
@@ -1665,7 +1671,7 @@ li.cart-item-container:last-child{
     color: #000000;
 }
 
-.cart-button.disabled {cursor: not-allowed;background: white;color: #E2522F;outline: 1px solid #E2522F;}
+.cart-button.disabled {cursor: not-allowed;background: white;color: #E2522F;outline: 1px solid #E2522F;height: 23px;position: relative;top: 1px;width: 23px;}
 .small-cart-operators {
     margin-top: 3px;
 }
@@ -1856,3 +1862,4 @@ td {
     font-size: 20px;
 }
 #creditCard > .checkout-button {position: absolute;right: 0;padding: 10px;top: 4px;}
+

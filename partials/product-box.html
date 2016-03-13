@@ -15,10 +15,10 @@
 		<div class="buy-details" style="-moz-user-select: none; -webkit-user-select: none; -ms-user-select:none; user-select:none;-o-user-select:none;" 
 			 unselectable="on"
 			 onselectstart="return false;" >
-			<div ng-class="(cart['items'][product.name] == undefined || cart['items'][product.name] == 0) ? 'disabled' : 'clear'" ng-click="subtractFromCart(product.name)" class="cart-button">-</div>
-			<input ng-if="cart['items'][product.name] == undefined" value="0" class="in-cart">
-			<input ng-if="cart['items'][product.name] !== undefined" value="{{cart['items'][product.name]}}" class="in-cart">
-			<div ng-click="addToCart(product.name)" class="cart-button">+</div>
+			<div ng-class="(cart['items'][product.name] == undefined || cart['items'][product.name] == 0) ? 'disabled' : 'clear'" ng-click="subtractFromCart(product.name)" class="cart-button minus">-</div>
+			<input item="{{product.name}}" ng-if="cart['items'][product.name] == undefined" value="0" class="in-cart">
+			<input item="{{product.name}}" ng-if="cart['items'][product.name] !== undefined" value="{{cart['items'][product.name]}}" class="in-cart">
+			<div ng-click="addToCart(product.name)" class="cart-button plus" token="{{$index}}">+</div>
 		</div>
 	</div>
 	<div class="clear"></div>

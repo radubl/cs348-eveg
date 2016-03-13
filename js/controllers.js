@@ -68,6 +68,50 @@ evegControllers.controller('ShopController', ['$scope',
         	return count;
         }
 
+        $(document).on('keyup', 'input.in-cart' ,function () {
+        	var val = parseInt($(this).val().split(" ").pop());
+
+        	console.log(val);
+
+        	if (!isNaN(val)) 
+        	{
+        		if ($scope.cart['items'][$(this).attr("item")] != undefined)
+        			$scope.cart['total'] -= $scope.getProductPriceByQuantity($(this).attr("item"),$scope.cart['items'][$(this).attr("item")]);
+        	   	$scope.cart['items'][$(this).attr("item")] = val;
+        	   	$scope.cart['total'] += $scope.getProductPriceByQuantity($(this).attr("item"),val);
+        	}
+        	$scope.$apply();
+        });
+
+        var tooltips = {}
+
+        setTimeout(function (argument) {
+
+	        console.log($('.cart-button'))
+
+	        $.each($('.cart-button.plus'), function(index, item) {
+	      		var tip = new Tooltip('Type and add to cart');
+	        	
+	        	tip.attach(item);
+	        	tip.hide();
+
+	        	console.log($(item).serialize())
+
+	        	tooltips[$(item).serialize()] = tip
+	        })
+
+        },500)
+
+        $(document).on('mouseover', '.in-cart', function (argument) {
+        	
+        	tooltips[$(this).serialize()].show();
+        })
+
+        $(document).on('mouseleave', '.in-cart', function (argument) {
+        	tooltips[$(this).serialize()].hide();
+        })
+
+
 	}]);
 
 evegControllers.controller('SearchController', ['$scope',
